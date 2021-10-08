@@ -2,6 +2,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util');
+const generateMarkdown = require('./utils/generateMarkdown.js')
 
 const writeFileAsync = util.promisify(fs.writeFile);
 // TODO: Create an array of questions for user input
@@ -21,6 +22,7 @@ const promptUser = () => {
             type: 'input'
             , name: 'Installation'
             , message: 'What are the installation instructions?'
+            , default: 'npm i'
         }
         , {
             type: 'input'
@@ -36,51 +38,22 @@ const promptUser = () => {
             type: 'input'
             , name: 'Test'
             , message: 'Do you have any test instructions?'
+            , default: 'npm run test'
+        }
+        , {
+            type: 'list'
+            , name: 'License'
+            , message: 'What Licenses did you use?'
+            , choices: ["MIT",  "APACHE 2.0", "GPL 3.0", "BSD 3", "None"]
         }
     ]);
 };
 
 // TODO: Create a function to write README file
-const writeToFile = (answers) =>
-  `# ${answers.Name}
 
-## Description
-
-${answers.Description}
-
-
-## Table of Contents
-
-
-
-## Installation
-
-${answers.Installation}
-
-
-## Usage
-
-${answers.Usage}
-
-
-## License
-
- 
-
-## Contributing
-
-${answers.Contribution}
-
-
-## Tests
-
-${answers.Test}
-
-
-## Questions
-
-
-`;
+const writeToFile = (answers) => {
+    return generateMarkdown(answers);
+};
 
 // TODO: Create a function to initialize app
 const init = () => {
