@@ -1,11 +1,10 @@
-// TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util');
 const generateMarkdown = require('./utils/generateMarkdown.js')
 
 const writeFileAsync = util.promisify(fs.writeFile);
-// TODO: Create an array of questions for user input
+
 const promptUser = () => {
     return inquirer.prompt([
         {
@@ -22,7 +21,7 @@ const promptUser = () => {
             type: 'input'
             , name: 'Installation'
             , message: 'What are the installation instructions?'
-            , default: 'npm i'
+            , default: 'The user will need to run the "npm i" terminal function to install the node modules needed to run this README.md Generator.'
         }
         , {
             type: 'input'
@@ -38,7 +37,7 @@ const promptUser = () => {
             type: 'input'
             , name: 'Test'
             , message: 'Do you have any test instructions?'
-            , default: 'npm run test'
+            , default: 'If there is a test folder for the project then the user will need to run the "npm run test" terminal function to execute the test.'
         }
         , {
             type: 'list'

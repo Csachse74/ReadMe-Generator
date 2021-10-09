@@ -20,13 +20,13 @@ function renderLicenseBadge(license) {
 function renderLicenseLink(license) {
   switch (license) {
     case 'MIT':
-      return '(https://opensource.org/licenses/MIT)';
+      return '[License: MIT](https://opensource.org/licenses/MIT)';
     case 'APACHE 2.0':
-      return '(https://opensource.org/licenses/Apache-2.0)';
+      return '[License: APACHE 2.0](https://opensource.org/licenses/Apache-2.0)';
     case 'GPL 3.0':
-      return '(https://www.gnu.org/licenses/gpl-3.0)';
+      return '[License: GPL 3.0](https://www.gnu.org/licenses/gpl-3.0)';
     case 'BSD 3':
-      return '(https://opensource.org/licenses/BSD-3-Clause)';
+      return '[License: BSD 3](https://opensource.org/licenses/BSD-3-Clause)';
     case 'None':
       return;
   }
@@ -34,22 +34,29 @@ function renderLicenseLink(license) {
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(answers) {
-  const badge = renderLicenseBadge(answers.License);
-  const link = renderLicenseLink(answers.License);
+  const badge = renderLicenseBadge(answers.License) || '';
+  const link = renderLicenseLink(answers.License) || '';
   
   
   return `
 # ${answers.Name}    ${badge}
 
+## Table of Contents
+  
+* [Description](#description)
+* [Installation](#installation)
+* [Usage](#usage)
+* [License](#license)
+* [Contributing](#contributing)
+* [Tests](#tests)
+* [Questions](#questions)
+
+
 ## Description
   
   ${answers.Description}
   
-  
-## Table of Contents
-  
-  
-  
+    
 ## Installation
   
   ${answers.Installation}
